@@ -1,4 +1,5 @@
 <template>
+
     <v-container>
         <h2>Navigation-drawer</h2>
         <v-row justify="space-around">
@@ -63,14 +64,20 @@
                         label="오른쪽으로"
                 ></v-switch>
             </v-navigation-drawer>
+        <model/>
     </v-container>
+
 </template>
 
 <script>
+    import model from "./Model"
     export default {
+        components: {
+            model
+        },
         data () {
             return {
-                drawer: true,
+                drawer: false,
                 items: [
                     { title: '음', icon: 'mdi-view-dashboard' },
                     { title: '오', icon: 'mdi-image' },
