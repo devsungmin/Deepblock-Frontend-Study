@@ -21,11 +21,11 @@
                     dark
             >
                 <v-list
-                        dense
+                        rounded
                         nav
                         class="py-0"
                 >
-                    <v-list-item two-line :class="miniVariant && 'px-0'">
+                    <v-list-item two-line :class="miniVariant && 'px-0'" >
                         <v-list-item-avatar>
                             <img src="../../image/iu.jpg">
                         </v-list-item-avatar>
@@ -41,15 +41,17 @@
                     <v-list-item
                             v-for="item in items"
                             :key="item.title"
-                            link
+                            :href=item.lnk
                     >
                         <v-list-item-icon>
                             <v-icon>{{ item.icon }}</v-icon>
                         </v-list-item-icon>
 
                         <v-list-item-content>
-                            <v-list-item-title>{{ item.title }}</v-list-item-title>
+                            <v-list-item-title>{{ item.title }} </v-list-item-title>
                         </v-list-item-content>
+                        <!--  각각의 리스트 하이퍼 링크 -->
+                        <a href="link"></a>
                     </v-list-item>
                 </v-list>
                 <v-switch
@@ -79,10 +81,10 @@
             return {
                 drawer: false,
                 items: [
-                    { title: '음', icon: 'mdi-view-dashboard' },
-                    { title: '오', icon: 'mdi-image' },
-                    { title: '아', icon: 'mdi-help-box' },
-                    { title: '예', icon: 'mdi-image'}
+                    { title: '음', icon: 'mdi-view-dashboard', lnk: '/' },
+                    { title: '오', icon: 'mdi-image', lnk: '/model' },
+                    { title: '아', icon: 'mdi-help-box', lnk: '/test' },
+                    { title: '예', icon: 'mdi-image', lnk: '/home'}
                 ],
                 color: 'primary',
                 right: false,
