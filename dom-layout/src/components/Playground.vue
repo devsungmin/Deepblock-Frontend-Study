@@ -50,8 +50,6 @@
                         <v-list-item-content>
                             <v-list-item-title>{{ item.title }} </v-list-item-title>
                         </v-list-item-content>
-                        <!--  각각의 리스트 하이퍼 링크 -->
-                        <a href="link"></a>
                     </v-list-item>
                 </v-list>
                 <v-switch

@@ -1,12 +1,13 @@
 <template>
-    <div id="chart"></div>
+    <comment col-3>
+        <div id="JSONData"/>
+    </comment>
 </template>
 
 <script>
-    import {
-        createGenerateChart,
-        createLoadDataChart
-    } from "./Bboard.js";
+    import createGenerateChart from "./Bboard.js";
+    import createDestoryChart from "./Bboard";
+    import createLoadDataChart from "./Bboard";
 
     export default {
         name: "billboard-chart",
@@ -19,10 +20,14 @@
         created() {
             // instance methods
             this.generateChart = createGenerateChart(this);
+            this.destoryChart = createDestoryChart(this);
             this.loadDataChart = createLoadDataChart(this);
         },
         mounted() {
             this.$chart = this.generateChart();
+        },
+        unmounted() {
+            this.destoryChart();
         },
         watch: {
             "options.data": {
