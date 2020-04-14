@@ -1,7 +1,6 @@
 <template>
     <div class="small">
-        <line-chart :chart-data="datacollection"></line-chart>
-        <button @click="fillData()">랜덤 데이터 생성</button>
+        <line-chart :data="chartData"></line-chart>
     </div>
 </template>
 
@@ -14,31 +13,7 @@
         },
         data () {
             return {
-                datacollection: null
-            }
-        },
-        mounted () {
-            this.fillData()
-        },
-        methods: {
-            fillData () {
-                this.datacollection = {
-                    labels: [this.getRandomInt(), this.getRandomInt()],
-                    datasets: [
-                        {
-                            label: 'Data One',
-                            backgroundColor: '#f87979',
-                            data: [this.getRandomInt(), this.getRandomInt()]
-                        }, {
-                            label: 'Data Two',
-                            backgroundColor: '#0054FF',
-                            data: [this.getRandomInt(), this.getRandomInt()]
-                        }
-                    ]
-                }
-            },
-            getRandomInt () {
-                return Math.floor(Math.random() * (50 - 5 + 1)) + 5
+                chartData: [['Jan', 44], ['Feb', 27], ['Mar', 60], ['Apr', 55], ['May', 37], ['Jun', 40], ['Jul', 69], ['Aug', 33], ['Sept', 76], ['Oct', 90], ['Nov', 34], ['Dec', 22]]
             }
         }
     }
