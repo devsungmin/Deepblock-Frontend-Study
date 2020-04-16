@@ -2,18 +2,10 @@
 
     <v-container>
         <h2>Navigation-drawer</h2>
-        <v-row justify="space-around">
-            <v-switch
-                    v-model="drawer"
-                    class="ma-2"
-                    label="활성화"
-                    id="test"
-            />
-        </v-row>
             <v-navigation-drawer
                     v-model="drawer"
                     :color="color"
-                    :expand-on-hover="expandOnHover"
+                    :expand-on-hover="true"
                     :mini-variant="miniVariant"
                     :right="right"
                     :src="bg"
@@ -55,31 +47,29 @@
                     </v-list-item>
                 </v-list>
                 <v-switch
-                        v-model="miniVariant"
-                        class="ma-2"
-                        label="작게"
-                ></v-switch>
-
-                <v-switch
                         v-model="right"
                         class="ma-2"
-                        label="오른쪽으로"
+                        label="right"
                 ></v-switch>
             </v-navigation-drawer>
-        <model/>
+        <model>
+            <chart/>
+        </model>
     </v-container>
 
 </template>
 
 <script>
     import model from "./Model"
+    import chart from "./Chart"
     export default {
         components: {
-            model
+            model,
+            chart
         },
         data () {
             return {
-                drawer: false,
+                drawer: true,
                 items: [
                     { title: '음', icon: 'mdi-view-dashboard', lnk: '/' },
                     { title: '오', icon: 'mdi-image', lnk: '/model' },

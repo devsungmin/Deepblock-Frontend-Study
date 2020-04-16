@@ -52,7 +52,7 @@
         display: "Clone",
         order: 3,
         components: {
-            draggable,
+            draggable
         },
         data() {
             return {

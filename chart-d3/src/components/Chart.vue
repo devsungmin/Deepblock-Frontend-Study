@@ -1,27 +1,38 @@
 <template>
-    <div class="small">
-        <line-chart :data="chartData"></line-chart>
-    </div>
+    <comment col-3>
+        <div id="JSONData"/>
+    </comment>
 </template>
 
 <script>
-    import LineChart from './LineChart.js'
+import { createGenerateChart, createDestoryChart, createLoadDataChart } from "./Billboard.js"
 
     export default {
-        components: {
-            LineChart
+        name: "billboard-chart",
+        props: {
+            options: {
+                type: Object,
+                required: true
+            }
         },
-        data () {
-            return {
-                chartData: [['Jan', 44], ['Feb', 27], ['Mar', 60], ['Apr', 55], ['May', 37], ['Jun', 40], ['Jul', 69], ['Aug', 33], ['Sept', 76], ['Oct', 90], ['Nov', 34], ['Dec', 22]]
+        created() {
+            this.generateChart = createGenerateChart(this);
+            this.destoryChart = createDestoryChart(this);
+            this.loadDataChart = createLoadDataChart(this);
+        },
+        mounted() {
+            this.$chart = this.generateChart();
+        },
+        unmounted() {
+            this.destoryChart();
+        },
+        watch: {
+            "options.data": {
+                deep: true,
+                handler(newData) {
+                    this.loadDataChart(newData);
+                }
             }
         }
-    }
+    };
 </script>
-
-<style>
-    .small {
-        max-width: 600px;
-        margin:  150px auto;
-    }
-</style>

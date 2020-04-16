@@ -29,30 +29,37 @@ export const createLoadDataChart = (instance) => {
     }
 }
 
+var data = [
+    {name: "CNN", loss: 0.96, excu: 0.97, epoch: 10},
+    {name: "RNN", loss: 0.058, excu: 0.89, epoch: 20},
+    {name: "SNN", loss: 0.047, excu: 0.67, epoch: 30},
+]
 
+// data 차트
 var chart = bb.generate({
     data: {
-        json: [
-            {name: "CNN", loss: 0.96, excu: 0.97, epoch: 10},
-            {name: "RNN", loss: 0.058, excu: 0.89, epoch: 20},
-            {name: "SNN", loss: 0.98, excu: 0.67, epoch: 30},
-            {name: "DNN", loss: 0.0001, excu: 0.79, epoch: 40}
-        ],
-        keys: {
-            value: ["loss", "excu", "epoch"]
-        }
+        json: data,
+        keys: { value: ["loss", "excu", "epoch"] }
     },
     bindto: "#JSONData"
 });
 
-setTimeout(function() {
+
+$("#resultBtn").click(function(){
+    $.ajax({
+        url: "https://localhost:8080/model",
+        success:function(data){
+            data.push({name: 'TNN', loss: 0.001, excu: 0.67, epoch: 30})
+            }
+    });
+});
+
+// 3초에 한번씩 갱신
+setTimeout(function() { 
+    // data push -> json에서 불러오는 코드 넣기
+    data.push({name: 'TNN', loss: 0.001, excu: 0.67, epoch: 30})
     chart.load({
-        json: [
-            {name: "CNN", loss: 1, excu: 0.97, epoch: 10},
-            {name: "RNN", loss: 2, excu: 0.89, epoch: 20},
-            {name: "SNN", loss: 3, excu: 0.67, epoch: 30},
-            {name: "DNN", loss: 8, excu: 0.79, epoch: 40}
-        ],
+        json: data,
         keys: {
             value: ["loss", "excu", "epoch"]
         }

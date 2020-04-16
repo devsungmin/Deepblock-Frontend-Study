@@ -2,8 +2,6 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HelloWorld from "../components/HelloWorld";
 import Models from "../components/Models";
-import Chart from "../components/Chart"
-import Billboard from "../components/Billboard"
 
 
 Vue.use(VueRouter)
@@ -18,16 +16,6 @@ const routes = [
         path: '/models',
         name: 'Models',
         component: Models
-    },
-    {
-        path: '/chart',
-        name: 'Charts',
-        component: Chart
-    },
-    {
-        path: '/billboard',
-        name: 'Billboard',
-        component: Billboard
     }
 ]
 
