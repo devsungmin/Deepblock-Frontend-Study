@@ -45,15 +45,6 @@ var chart = bb.generate({
 });
 
 
-$("#resultBtn").click(function(){
-    $.ajax({
-        url: "https://localhost:8080/model",
-        success:function(data){
-            data.push({name: 'TNN', loss: 0.001, excu: 0.67, epoch: 30})
-            }
-    });
-});
-
 // 3초에 한번씩 갱신
 setTimeout(function() { 
     // data push -> json에서 불러오는 코드 넣기

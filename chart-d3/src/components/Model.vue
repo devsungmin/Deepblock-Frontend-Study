@@ -1,20 +1,20 @@
 <template>
-    <Models>
+    <Model>
     <div class="row" >
         <div class="col-3">
             <h3>Layer</h3>
-            <draggable class="dragArea list-group" :list="layer" :group="{ name: 'layers', pull: 'clone', put: false }" @change="log">
-                <div class="list-group-item" v-for="element in layer" :key="element.name">
-                    {{ element.name }}
+            <draggable class="dragArea list-group" :list="layer" :group="{ type: 'type', pull: 'clone', put: false }" @change="log">
+                <div class="list-group-item" v-for="element in layer" :key="element.type">
+                    {{ element.type }}
                 </div>
             </draggable>
         </div>
 
         <div class="col-3">
             <h3>Activation Function</h3>
-            <draggable class="dragArea list-group" :list="activation" :group="{ name: 'layers', pull: 'clone', put: false }" @change="log">
-                <div class="list-group-item"  v-for="element in activation" :key="element.name">
-                    {{ element.name }}
+            <draggable class="dragArea list-group" :list="activation" :group="{ activation: 'activation', pull: 'clone', put: false }" @change="log">
+                <div class="list-group-item"  v-for="element in activation" :key="element.activation">
+                    {{ element.activation }}
                 </div>
             </draggable>
         </div>
@@ -22,77 +22,82 @@
         <div class="col-3">
             <h3>Model</h3>
             <draggable class="dragArea list-group" :list="model" group="layers" @change="log">
-                <div class="list-group-item" v-for="element in model" :key="element.name">
-                    {{ element.name }}
+                <div class="list-group-item" v-for="element in model" :key="element.model">
+                    {{ element.model }}
                 </div>
             </draggable>
         </div>
 
-        <rawDisplayer class="col-3" :value="layer" title="List1" />
-        <rawDisplayer class="col-3" :value="activation" title="List2" />
-        <rawDisplayer class="col-3" :value="model" title="List3" />
-
         <!-- 전송하기 버튼  -->
-        <v-col class="btn-class" cols="12" sm="4">
+        <v-col class="btn-class">
             <div class="resultBtn" id='resultBtn'>
                 <v-btn rounded @click="saveFile()">전송</v-btn>
             </div>
-            <div class="resetBtn" id='rsetBtn'>
+            <br><div class="resetBtn" id='rsetBtn'>
                 <v-btn rounded @click="replace()">초기화</v-btn>
             </div>
+            <br><div class="resetBtn" id='rsetBtn'>
+            <v-btn rounded @click="loadJson()">load Data</v-btn>
+        </div>
         </v-col>
+        <chart/>
     </div>
-    </Models>
+    </Model>
 </template>
 
 <script>
     import draggable from 'vuedraggable'
+    import chart from './Chart'
+    import modelsdata from '../assets/data/modelsdata.json'
+
     export default {
         name: "clone",
         display: "Clone",
         order: 3,
         components: {
-            draggable
+            draggable,
+            chart
         },
         data() {
             return {
                 layer: [
-                    { name: "CNN", type: "cnnlayer", loss: 1.0, id: 1},
-                    { name: "RNN", id: 2 },
-                    { name: "SNN", id: 3 },
-                    { name: "Layer", id: 4 },
-                    { name: "KNN", id: 5 },
-                    { name: "LSTM", id: 6 }
+                    {type: "conv2d", ID: 0, loss: 1.0, id: 1},
+                    {type: "maxPooling2d", ID: 1},
+                    {type: "dense", ID: 2,},
+                    {type: "KNN", ID: 3,},
+                    {type: "LSTM", ID: 4,}
                 ],
                 activation: [
-                    {name: "ReLu", id: 7},
-                    {name: "Sigmid", id: 8},
-                    {name: "test_1", id: 9},
-                    {name: "test_2", id: 10},
+                    {activation: "relu", ID: 5},
+                    {activation: "Sigmid", ID: 6},
+                    {activation: "softmax", ID: 7},
+                    {activation: "test_2", ID: 8},
                 ],
-                model: [
-                    {name: "input", id: 11}
-                ]
-            };
+                model: modelsdata.models
+            }
         },
         methods: {
             log: function(evt) {
                 window.console.log(evt);
-            }, // saveFile => Json 형식으로 보여줌
+            },
             saveFile: function() {
                 const data = JSON.stringify(this.model)
-                const blob = new Blob([data], {type: 'text/plain'})
-                const e = document.createEvent('MouseEvents'),
-                    a = document.createElement('model');
-                a.download = "layer.json";
-                a.href = window.URL.createObjectURL(blob);
-                a.dataset.downloadurl = ['layer/json', a.download, a.href].join(':');
+                const e = document.createEvent('MouseEvents')
                 e.initEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-                a.dispatchEvent(e);
                 console.log(data);
             },
             replace: function() {
                 this.model = [];
+            },
+            // Json 파일에 layers값 가져오기
+            loadJson(){
+                console.log( this.model )
+                for( let _model of this.model){
+                    for( let _layer of _model.layers ){
+                        console.log(_layer) // <- layer ok? ggg
+                    }
+                }
+                window.model = this.model
             }
         }
     }
