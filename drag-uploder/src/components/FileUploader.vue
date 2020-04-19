@@ -4,19 +4,57 @@
         <div class="dropbox" id="app">
             <input class="input-file"
                    type="file"
-                   name="myfile"
+                   name="myfile[]"
                    @change="upload($event.target.name, $event.target.files)"
                    @drop="upload($event.target.name, $event.target.files)">
             <h2>file uploader</h2>
         </div>
-            <div class="input-group-append">
+
+            <v-file-input label="one file input" show-size counter multiple filled prepend-icon="mdi-camera" @change="onFileChange">
+                <template v-slot:selection="{ index, text }">
+                    <v-chip
+                            v-if="index < 2"
+                            color="deep-purple accent-4"
+                            dark
+                            label
+                            small
+                    >
+                        {{ text }}
+                    </v-chip>
+
+                    <span
+                            v-else-if="index === 2"
+                            class="overline grey--text text--darken-3 mx-2"
+                    >
+        +{{ files.length - 2 }} File(s)
+      </span>
+                </template>
+            </v-file-input>
+
+        <v-file-input label="two file input" show-size counter multiple filled prepend-icon="mdi-camera" @change="onFileChange">
+            <template v-slot:selection="{ index, text }">
+                <v-chip
+                        v-if="index < 2"
+                        color="deep-purple accent-4"
+                        dark
+                        label
+                        small
+                >
+                    {{ text }}
+                </v-chip>
+
+                <span
+                        v-else-if="index === 2"
+                        class="overline grey--text text--darken-3 mx-2"
+                >
+        +{{ files.length - 2 }} File(s)
+      </span>
+            </template>
+        </v-file-input>
+        <div class="input-group-append">
           <span class="input-group-text" @click="onClickFile"><i class="fa fa-paperclip">
             </i></span>
-                <button class="btn btn-outline-info" @click="onClickUpload">서버에 전송</button>
-            </div>
-            <input type=file class="file-input" accept="image/*" ref="fileInput" @change="onFileChange">
-        <div v-show="imageSrc" class="upload-image">
-            <img :src="imageSrc">
+            <v-btn class="btn btn-outline-info" @click="onClickUpload">서버에 전송</v-btn>
         </div>
     </v-container>
 </template>
@@ -25,6 +63,9 @@
     import axios from 'axios';
     export default {
         name: "FileUploader",
+        data: () => ({
+            files: [],
+        }),
         methods: {
             upload: function(name, files) {
                 const formData = new FormData();
@@ -33,6 +74,20 @@
                 axios.post(url, formData).then(response => {
                     console.log(response);
                 })
+            },
+            onClickUpload(event) {
+                this.inputImageFile(event.target.files)
+            },
+            inputImageFile (files) {
+                if (files.length) {
+                    let file = files[0]
+                    if (!/^image\//.test(file.type)) {
+                        alert('이미지 파일만 등록이 가능합니다')
+                        return false
+                    }
+                    this.filename = file.name
+                    this.preview(file)
+                }
             }
         }
     }

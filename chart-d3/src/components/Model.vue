@@ -22,23 +22,25 @@
         <div class="col-3">
             <h3>Model</h3>
             <draggable class="dragArea list-group" :list="model" group="layers" @change="log">
-                <div class="list-group-item" v-for="element in model" :key="element.model">
-                    {{ element.model }}
+                <div class="list-group-item" v-for="element in model" :key="element.type">
+                    {{ element.type }}
                 </div>
             </draggable>
         </div>
 
-        <!-- 전송하기 버튼  -->
+        <!-- 버튼  -->
         <v-col class="btn-class">
             <div class="resultBtn" id='resultBtn'>
-                <v-btn rounded @click="saveFile()">전송</v-btn>
+                <v-btn rounded @click="saveFile()">result</v-btn>
             </div>
-            <br><div class="resetBtn" id='rsetBtn'>
-                <v-btn rounded @click="replace()">초기화</v-btn>
+            <br>
+            <div class="resetBtn" id='rsetBtn'>
+                <v-btn rounded @click="reset()">reset</v-btn>
             </div>
-            <br><div class="resetBtn" id='rsetBtn'>
-            <v-btn rounded @click="loadJson()">load Data</v-btn>
-        </div>
+            <br>
+            <div class="loadBtn" id='loadBtn'>
+                <v-btn rounded @click="loadJson()">load Data</v-btn>
+            </div>
         </v-col>
         <chart/>
     </div>
@@ -49,6 +51,10 @@
     import draggable from 'vuedraggable'
     import chart from './Chart'
     import modelsdata from '../assets/data/modelsdata.json'
+
+    const tt = modelsdata.models
+    window.tt = tt;
+    const data = tt[0]
 
     export default {
         name: "clone",
@@ -73,7 +79,8 @@
                     {activation: "softmax", ID: 7},
                     {activation: "test_2", ID: 8},
                 ],
-                model: modelsdata.models
+                loadlayers: modelsdata.models,
+                model: data
             }
         },
         methods: {
@@ -86,18 +93,17 @@
                 e.initEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
                 console.log(data);
             },
-            replace: function() {
+            reset: function() {
                 this.model = [];
             },
             // Json 파일에 layers값 가져오기
             loadJson(){
-                console.log( this.model )
-                for( let _model of this.model){
-                    for( let _layer of _model.layers ){
-                        console.log(_layer) // <- layer ok? ggg
+                for( let _model of this.loadlayers){
+                    for( let _layer of _model.layers ) {
+                        console.log(_layer) // <- layer ok?
                     }
                 }
-                window.model = this.model
+                window.loadlayers = this.loadlayers
             }
         }
     }
