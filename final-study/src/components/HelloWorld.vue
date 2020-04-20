@@ -14,6 +14,6 @@
     //       text: 'vuetify-loader',
     //       href: 'https://github.com/vuetifyjs/vuetify-loader',
     //     }]
-    // };
+    // })
   }
 </script>

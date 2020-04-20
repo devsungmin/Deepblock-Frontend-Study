@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
+    <!-- <v-app-bar app color="primary" dark>
         <v-app-bar-nav-icon >
 
         </v-app-bar-nav-icon>
@@ -12,17 +12,18 @@
       <v-btn icon href="/models">
         <v-icon>mdi-laptop</v-icon>
       </v-btn>
-    </v-app-bar>
+    </v-app-bar> -->
+    <Models/>
   </v-app>
 </template>
 
 <script>
-    // import NavigationDrawer from "./components/NavigationDrawer";
+    import Models from "./components/Models";
 export default {
   name: 'App',
 
   components: {
-      // NavigationDrawer
+      Models
   },
 
   data: () => ({
