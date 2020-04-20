@@ -3,7 +3,7 @@
     <div class="row" >
         <div class="col-3">
             <h3>Layer</h3>
-            <draggable class="dragArea list-group" :list="layer" :group="{ type: 'type', pull: 'clone', put: false }" @change="log">
+            <draggable class="Layer list-group" :list="layer" :group="{ type: 'type', pull: 'clone', put: false }" @change="log">
                 <div class="list-group-item" v-for="element in layer" :key="element.type">
                     {{ element.type }}
                 </div>
@@ -12,7 +12,7 @@
 
         <div class="col-3">
             <h3>Activation Function</h3>
-            <draggable class="dragArea list-group" :list="activation" :group="{ activation: 'activation', pull: 'clone', put: false }" @change="log">
+            <draggable class="Activation list-group" :list="activation" :group="{ activation: 'activation', pull: 'clone', put: false }" @change="log">
                 <div class="list-group-item"  v-for="element in activation" :key="element.activation">
                     {{ element.activation }}
                 </div>
@@ -21,7 +21,7 @@
 
         <div class="col-3">
             <h3>Model</h3>
-            <draggable class="dragArea list-group" :list="model" group="layers" @change="log">
+            <draggable class="Model list-group" :list="model" :group= "{type: 'type', put: true}" @change="log">
                 <div class="list-group-item" v-for="element in model" :key="element.type">
                     {{ element.type }}
                 </div>
