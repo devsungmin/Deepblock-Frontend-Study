@@ -1,13 +1,13 @@
 <template>
-  <v-container>
+  <v-content>
     <h1>Hello world</h1>
-  </v-container>
+  </v-content>
 </template>
 
 <script>
   export default {
     name: 'HelloWorld',
-    components: { },
+    components: {  },
     // data: () => ({
     //   ecosystem: [
     //     {

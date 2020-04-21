@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <!-- <v-app-bar app color="primary" dark>
+    <v-app-bar app color="primary" dark>
         <v-app-bar-nav-icon >
 
         </v-app-bar-nav-icon>
@@ -9,21 +9,24 @@
      <v-btn icon href="/">
        <v-icon>mdi-home</v-icon>
      </v-btn>
-      <v-btn icon href="/models">
+      <v-btn icon href="/board">
         <v-icon>mdi-laptop</v-icon>
       </v-btn>
-    </v-app-bar> -->
-    <Models/>
+    </v-app-bar>
+    <!-- <Helloworld/> -->
+    <Board/>
   </v-app>
 </template>
 
 <script>
-    import Models from "./components/Models";
+// import Helloworld from './components/HelloWorld'
+import Board from './components/Board'
 export default {
   name: 'App',
 
   components: {
-      Models
+    Board
+    // Helloworld
   },
 
   data: () => ({

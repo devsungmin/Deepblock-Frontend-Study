@@ -29,7 +29,7 @@
           "ID": 0,
           "pos_x": "100",
           "pos_y": "200",
-          "params[": {
+          "params": {
             "inputShape": [
               28,
               28,

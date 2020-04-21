@@ -1,13 +1,12 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import HelloWorld from "../components/HelloWorld";
-import Models from "../components/Models"
-
+import HelloWorld from '../components/HelloWorld'
+import Board from '../components/Board'
 
 Vue.use(VueRouter)
 const routes = [
     { path: '/', name: 'HelloWorld', component: HelloWorld },
-    { path: '/models', name: 'models,', component: Models }
+    { path: '/board', name: 'board,', component: Board }
 ]
 
 const router = new VueRouter({
