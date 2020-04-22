@@ -4,7 +4,7 @@
             <v-col cols="9" sm="6" md="3">
                 <h3>Layer</h3>
                 <draggable class="layer" :list="layer" :group="{ type: 'layer', pull: 'clone', put: false }" @change="log">
-                    <div class="list-group-item" id="layer" v-for="element in layer" :key="element.type">
+                    <div class="layer-group-list" id="layer" v-for="element in layer" :key="element.ID">
                         {{element.type}}
                     </div>
                 </draggable>
@@ -13,7 +13,7 @@
             <v-col cols="9" sm="6" md="3">
                 <h3>Activation Function</h3>
                 <draggable class="activation" :list="activation" :group="{ type: 'activation', pull: 'clone', put: false }" @change="log">
-                    <div class="list-group-item" id="activation" v-for="element in activation" :key="element.type">
+                    <div class="activation-group-item" id="activation" v-for="element in activation" :key="element.ID">
                         {{element.type}}
                     </div>
                 </draggable>
@@ -22,7 +22,7 @@
                 <v-col cols="9" sm="6" md="3">
                     <h3>Models</h3>
                     <draggable class="Models" :list="models" :group="{ type: 'models', put: true }" @change="log">
-                        <div class="list-group-item" id="models" v-for="element in models" :key="element.type">
+                        <div class="models-group-item" id="models" v-for="element in models" :key="element.ID">
                             {{element.type}}
                         </div>
                     </draggable>
@@ -77,46 +77,55 @@
     }
 </script>
 
-<style scoped>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap');
+@font-face {
+    font-family: 'Nanum Gothic', sans-serif;
+    src: local(NanumGothic), url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap') format("woff2");
+}
+template {
+    font-family: 'East Sea Dokdo', cursive;
+}
 h1{ color: black; }
 h3{ text-align: center;}
-
 .layer, .activation, .Models {
-    width: 300px;
-    height: auto;
-    border: 2px solid #000;
+    position: absolute;
+    width: 13%;
+    height: 20%;
+    border: 2px solid cornflowerblue;
     border-radius: 10px;
     margin: 20px;
-
+    text-align: center;
 }
 .resultBtn, .resetBtn{
     margin: 20px;
 }
 #layer {
-    width: 200px;
+    width: 60%;
     height: auto;
     background:cyan;
+    border: 2px solid blue;
+    text-align: center;
+    border-radius: 10px;
+    margin-left: 50px;
+    margin-top: 10%;
+  }
+  #activation {
+    width: 60%;
+    height: auto;
+    background: yellow;
+      border: 2px solid yellowgreen;
+      text-align: center;
+      border-radius: 10px;
+      margin-left: 50px;
+      margin-top: 10%;
+  }
+  #models {
+    width: 60%;
+    height: auto;
     border: 2px solid black;
     text-align: center;
     border-radius: 10px;
     margin-left: 50px;
-  }
-  #activation {
-      width: 200px;
-      height: auto;
-      background: yellow;
-      border: 2px solid black;
-      text-align: center;
-      border-radius: 10px;
-      margin-left: 50px;
-  }
-  #models {
-      width: 200px;
-      height: auto;
-      /* background: coral; */
-      border: 2px solid black;
-      text-align: center;
-      border-radius: 10px;
-      margin-left: 50px;
   }
 </style>
