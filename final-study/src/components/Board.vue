@@ -8,6 +8,9 @@
                         {{element.type}}
                     </div>
                 </draggable>
+                <div>
+                    
+                </div>
             </v-col>
             <!-- activation function  -->
             <v-col cols="9" sm="6" md="3">
@@ -22,7 +25,7 @@
                 <v-col cols="9" sm="6" md="3">
                     <h3>Models</h3>
                     <draggable class="Models" :list="models" :group="{ type: 'models', put: true }" @change="log">
-                        <div class="models-group-item" id="models" v-for="element in models" :key="element.ID">
+                        <div class="models-group-item layer_t acti_t" id="models" v-for="element in models" :key="element.ID">
                             {{element.type}}
                         </div>
                     </draggable>
@@ -50,7 +53,12 @@
         data : () => ({
             layer: [
                 { type: "conv2d", ID: "l0"},
-                { type: "maxPooling2d", ID: "l1"}
+                { type: "maxPooling2d", ID: "l1"},
+                { type: "avgPooling2d", ID: "l2"},
+                { type: "test_1", ID: "l3"},
+                { type: "test_2", ID: "l4"},
+                { type: "test_3", ID: "l5"},
+                { type: "test_4", ID: "l6"}
             ],
             activation:[
                 { type: "relu", ID:"a0" },
@@ -78,21 +86,24 @@
 </script>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap");
 @font-face {
-    font-family: 'Nanum Gothic', sans-serif;
-    src: local(NanumGothic), url('https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap') format("woff2");
+  font-family: "Nanum Gothic", sans-serif;
+  src: local(NanumGothic),
+    url("https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap")
+      format("woff2");
 }
-template {
-    font-family: 'East Sea Dokdo', cursive;
+body {
+    font-family: "Nanum Gothic";
 }
 h1{ color: black; }
-h3{ text-align: center;}
+h3{ padding-left: 30%;}
 .layer, .activation, .Models {
     position: absolute;
     width: 13%;
-    height: 20%;
+    height: auto;
     border: 2px solid cornflowerblue;
+    background: wheat;
     border-radius: 10px;
     margin: 20px;
     text-align: center;
@@ -100,7 +111,7 @@ h3{ text-align: center;}
 .resultBtn, .resetBtn{
     margin: 20px;
 }
-#layer {
+#layer, .layer_t{
     width: 60%;
     height: auto;
     background:cyan;
@@ -108,9 +119,8 @@ h3{ text-align: center;}
     text-align: center;
     border-radius: 10px;
     margin-left: 50px;
-    margin-top: 10%;
   }
-  #activation {
+  #activation, .acti_t{
     width: 60%;
     height: auto;
     background: yellow;
@@ -118,14 +128,13 @@ h3{ text-align: center;}
       text-align: center;
       border-radius: 10px;
       margin-left: 50px;
-      margin-top: 10%;
   }
-  #models {
+  /* #models {
     width: 60%;
     height: auto;
     border: 2px solid black;
     text-align: center;
     border-radius: 10px;
     margin-left: 50px;
-  }
+  } */
 </style>

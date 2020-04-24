@@ -2,7 +2,7 @@
   <v-container class="inputdata">
     <h1>File Uploader Page</h1>
 
-    <input type="file" @change="uploadImage" name="image" id="image"  accept="image/*" >
+    <input type="file" @change="uploadImage" name="image" id="image"  accept="image/*" multiple >
     <v-btn class="btn btn-outline-info" @click.prevent="submit">서버에 전송</v-btn>
 
   </v-container>

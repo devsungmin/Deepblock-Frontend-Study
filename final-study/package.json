@@ -12,7 +12,8 @@
     "vue": "^2.6.11",
     "vue-router": "^3.1.6",
     "vuedraggable": "^2.23.2",
-    "vuetify": "^2.2.11"
+    "vuetify": "^2.2.11",
+    "billboard.js": "git://github.com/naver/billboard.js.git#nightly"
   },
   "devDependencies": {
     "@vue/cli-plugin-babel": "~4.3.0",
