@@ -1,54 +1,61 @@
 <template>
     <v-content>
-        <v-row>
-            <v-col cols="9" sm="6" md="3">
-                <h3>Layer</h3>
-                <draggable class="layer" :list="layer" :group="{ type: 'layer', pull: 'clone', put: false }" @change="log">
-                    <div class="layer-group-list" id="layer" v-for="element in layer" :key="element.ID">
-                        {{element.type}}
-                    </div>
-                </draggable>
-                <div>
-                    
-                </div>
-            </v-col>
-            <!-- activation function  -->
-            <v-col cols="9" sm="6" md="3">
-                <h3>Activation Function</h3>
-                <draggable class="activation" :list="activation" :group="{ type: 'activation', pull: 'clone', put: false }" @change="log">
-                    <div class="activation-group-item" id="activation" v-for="element in activation" :key="element.ID">
-                        {{element.type}}
-                    </div>
-                </draggable>
-            </v-col>
-             <!-- model -->
-                <v-col cols="9" sm="6" md="3">
-                    <h3>Models</h3>
-                    <draggable class="Models" :list="models" :group="{ type: 'models', put: true }" @change="log">
-                        <div class="models-group-item layer_t acti_t" id="models" v-for="element in models" :key="element.ID">
+        <v-container>
+            <v-row>
+                <v-col align="center">
+                    <h3>Layer</h3>
+                    <draggable class="layer" :list="layer" :group="{ type: 'layer', pull: 'clone', put: false }" @change="log">
+                        <v-card class="layer-group-list" id="layer" v-for="element in layer" :key="element.ID">
                             {{element.type}}
-                        </div>
+                        </v-card>
+                    </draggable>
+                    <div>
+                        
+                    </div>
+                </v-col>
+                <!-- activation function  -->
+                <v-col>
+                    <h3>Activation Function</h3>
+                    <draggable class="activation" :list="activation" :group="{ type: 'activation', pull: 'clone', put: false }" @change="log">
+                        <v-card class="activation-group-item" id="activation" v-for="element in activation" :key="element.ID">
+                            {{element.type}}
+                        </v-card>
                     </draggable>
                 </v-col>
-                <v-col>
-                    <div class="resultBtn" id='resultBtn'>
-                        <v-btn rounded @click="saveFile()">전송</v-btn>
-                    </div>
-                    <div class="resetBtn" id='rsetBtn'>
-                        <v-btn rounded @click="replace()">초기화</v-btn>
-                    </div>
-                </v-col>
-        </v-row>
+                <!-- model -->
+                    <v-col>
+                        <h3>Models</h3>
+                        <draggable class="Models" :list="models" :group="{ type: 'models', put: true }" @change="log">
+                            <v-card class="models-group-item layer_t acti_t" id="models" v-for="element in models" :key="element.ID">
+                                {{element.type}}
+                            </v-card>
+                        </draggable>
+                    </v-col>
+                    <v-col>
+                        <div class="resultBtn" id='resultBtn'>
+                            <v-btn rounded @click="saveFile()">전송</v-btn>
+                        </div>
+                        <div class="resetBtn" id='rsetBtn'>
+                            <v-btn rounded @click="replace()">초기화</v-btn>
+                        </div>
+                    </v-col>
+            </v-row>
+        <v-col>
+            <chart/>
+        </v-col>
+        </v-container>
     </v-content>
 </template>
 
 <script>
     import draggable from 'vuedraggable'
     // import modelsdata from '../assets/data/modelsdata.json'
+    import chart from './chart.vue'
     export default {
         name: "Board",
         components: {
-            draggable
+            draggable,
+            chart
         },
         data : () => ({
             layer: [
@@ -114,7 +121,7 @@ h3{ padding-left: 30%;}
 #layer, .layer_t{
     width: 60%;
     height: auto;
-    background:cyan;
+    background:cyan !important;
     border: 2px solid blue;
     text-align: center;
     border-radius: 10px;
@@ -123,18 +130,18 @@ h3{ padding-left: 30%;}
   #activation, .acti_t{
     width: 60%;
     height: auto;
-    background: yellow;
+    background: yellow !important;
       border: 2px solid yellowgreen;
       text-align: center;
       border-radius: 10px;
       margin-left: 50px;
   }
-  /* #models {
+  #models {
     width: 60%;
     height: auto;
     border: 2px solid black;
     text-align: center;
     border-radius: 10px;
     margin-left: 50px;
-  } */
+  }
 </style>
