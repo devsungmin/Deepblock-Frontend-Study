@@ -87,13 +87,8 @@
 
 <style>
 @import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap");
-@font-face {
-  font-family: "Nanum Gothic", sans-serif;
-  src: local(NanumGothic),
-    url("https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap")
-      format("woff2");
-}
-body {
+
+* {
     font-family: "Nanum Gothic";
 }
 h1{ color: black; }
