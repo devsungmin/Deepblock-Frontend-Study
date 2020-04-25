@@ -1,13 +1,16 @@
 <template>
-  <v-content>
-    <h1>Hello world</h1>
-  </v-content>
+  <v-app>
+    <NavigationDrawer/>
+    <Board/>
+  </v-app>
 </template>
 
 <script>
+import Board from '../views/Board'
+import NavigationDrawer from './NavigationDrawer'
   export default {
     name: 'HelloWorld',
-    components: {  },
+    components: { NavigationDrawer, Board },
     // data: () => ({
     //   ecosystem: [
     //     {
