@@ -1,56 +1,57 @@
 <template>
   <v-content>
-      <v-tabs fixed-tabs background-color="indigo" dark>
-        <v-tab><v-icon>mdi-home</v-icon>Home</v-tab>
-        <v-tab><v-icon>mdi-database</v-icon>Data</v-tab>
-        <v-tab><v-icon>mdi-console</v-icon>Model</v-tab>
-        <v-tab><v-icon>mdi-cog</v-icon>Setting</v-tab>
-      </v-tabs>
-      <v-row>
-        <v-col cols="9" sm="6" md="3">
-          <!-- Layers -->
-          <h3>Layers</h3>
-          <draggable
-            class="layers"
-            :list="layers"
-            :group="{ type: 'layers', pull: 'clone', put: false }"
-            :clone="addBlock"
-            @change="log"
-          >
-            <div
-              class="block"
-              id="layers"
-              v-for="element in layers"
-              :key="element.ID"
+    <v-tabs fixed-tabs background-color="indigo" dark>
+      <v-tab :href="'#home'"><v-icon>mdi-home</v-icon>Home</v-tab>
+      <v-tab :href="'#dataset'"><v-icon>mdi-database</v-icon>Dataset</v-tab>
+      <v-tab :href="'#board'"><v-icon>mdi-console</v-icon>Board</v-tab>
+      <v-tab :href="'#setting'"><v-icon>mdi-cog</v-icon>Setting</v-tab>
+    </v-tabs>
+      <v-row id="board">
+        <v-col>
+          <v-col>
+            <!-- Layers -->
+            <h3>Layers</h3>
+            <draggable
+              class="layers"
+              :list="layers"
+              :group="{ type: 'layers', pull: 'clone', put: false }"
+              @change="log"
             >
-              {{ element.type }}
-            </div>
-          </draggable>
-          <div></div>
-        </v-col>
+              <div
+                class="block"
+                id="layers"
+                v-for="element in layers"
+                :key="element.ID"
+              >
+                {{ element.type }}
+              </div>
+            </draggable>
+            <div></div>
+          </v-col>
 
-        <!-- Activations  -->
-        <v-col cols="9" sm="6" md="3">
-          <h3>Activation Functions</h3>
-          <draggable
-            class="activations"
-            :list="activations"
-            :group="{ type: 'activations', pull: 'clone', put: false }"
-            @change="log"
-          >
-            <div
-              class="block"
-              id="activations"
-              v-for="element in activations"
-              :key="element.ID"
+          <!-- Activations  -->
+          <v-col>
+            <h3>Activation Functions</h3>
+            <draggable
+              class="activations"
+              :list="activations"
+              :group="{ type: 'activations', pull: 'clone', put: false }"
+              @change="log"
             >
-              {{ element.type }}
-            </div>
-          </draggable>
+              <div
+                class="block"
+                id="activations"
+                v-for="element in activations"
+                :key="element.ID"
+              >
+                {{ element.type }}
+              </div>
+            </draggable>
+          </v-col>
         </v-col>
 
         <!-- Model -->
-        <v-col cols="9" sm="6" md="3">
+        <v-col>
           <h3>Model</h3>
           <draggable
             class="model"
@@ -70,21 +71,21 @@
           </draggable>
         </v-col>
 
-        <v-col>
+        <v-row>
           <div class="resultBtn" id="resultBtn">
             <v-btn rounded @click="saveFile()">전송</v-btn>
           </div>
           <div class="resetBtn" id="rsetBtn">
             <v-btn rounded @click="replace()">초기화</v-btn>
           </div>
-        </v-col>
+        </v-row>
+        
       </v-row>
   </v-content>
 </template>
 
 <script>
 import draggable from "vuedraggable";
-// import modelsdata from '../assets/data/modelsdata.json'
 export default {
   name: "Board",
   components: {

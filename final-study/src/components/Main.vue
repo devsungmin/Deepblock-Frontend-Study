@@ -1,18 +1,12 @@
 <template>
-  <v-app>
-    <Board/>
-     <Nav/>
-     <router-view/>
-  </v-app>
+    <Nav/>
 </template>
 
 <script>
-import Nav from './NavigationDrawer'
-import Board from '../views/Board'
+import Nav from '@/components/NavigationDrawer'
   export default {
     name: 'Main',
     components: {
-      'board': Board,
       Nav
       },
   }

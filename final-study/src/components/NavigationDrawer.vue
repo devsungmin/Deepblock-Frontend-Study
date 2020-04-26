@@ -30,7 +30,6 @@
           <v-list-item-content>
             <v-list-item-title>{{ item.title }} </v-list-item-title>
           </v-list-item-content>
-          <a href/>
         </v-list-item>
       </v-list>
       <v-switch v-model="right" label="Right" />
@@ -41,7 +40,7 @@
       </template>
     </v-navigation-drawer>
 
-    <v-app-bar app clipped-left color="primary" dark>
+    <v-app-bar app clipped-left clipped-right color="primary" dark>
       <v-app-bar-nav-icon @click.stop="drawer = !drawer" />
       <v-toolbar-title>Deep Block</v-toolbar-title>
       <v-spacer />

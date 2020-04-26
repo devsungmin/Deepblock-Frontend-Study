@@ -1,13 +1,14 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Main from '../components/Main'
-import Board from '../views/Board'
+import Main from '@/components/Main'
+import Board from '@/views/Board'
 
 Vue.use(VueRouter)
 const routes = [
-    { path: '/', name: 'Main', component: Main },
+    { path: '/', component: Main },
     { path: '/board', name: 'Board', component: Board }
-],
+]
+
 const router = new VueRouter({
     mode: 'history',
     base: process.env.BASE_URL,
