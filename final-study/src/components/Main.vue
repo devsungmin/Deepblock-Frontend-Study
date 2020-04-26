@@ -1,22 +1,19 @@
 <template>
   <v-app>
-    <NavigationDrawer/>
     <Board/>
+     <Nav/>
+     <router-view/>
   </v-app>
 </template>
 
 <script>
+import Nav from './NavigationDrawer'
 import Board from '../views/Board'
-import NavigationDrawer from './NavigationDrawer'
   export default {
-    name: 'HelloWorld',
-    components: { NavigationDrawer, Board },
-    // data: () => ({
-    //   ecosystem: [
-    //     {
-    //       text: 'vuetify-loader',
-    //       href: 'https://github.com/vuetifyjs/vuetify-loader',
-    //     }]
-    // })
+    name: 'Main',
+    components: {
+      'board': Board,
+      Nav
+      },
   }
 </script>

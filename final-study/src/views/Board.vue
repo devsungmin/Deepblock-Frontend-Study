@@ -1,67 +1,84 @@
 <template>
   <v-content>
-    <v-row>
-      <v-col cols="9" sm="6" md="3">
-        <!-- Layers -->
-        <h3>Layers</h3>
-        <draggable
-          class="layers"
-          :list="layers"
-          :group="{ type: 'layers', pull: 'clone', put: false }"
-          :clone="addBlock"
-          @change="log"
-        >
-          <div
-            class="block"
-            id="layers"
-            v-for="element in layers"
-            :key="element.ID"
-          >{{element.type}}</div>
-        </draggable>
-        <div></div>
-      </v-col>
+      <v-tabs fixed-tabs background-color="indigo" dark>
+        <v-tab><v-icon>mdi-home</v-icon>Home</v-tab>
+        <v-tab><v-icon>mdi-database</v-icon>Data</v-tab>
+        <v-tab><v-icon>mdi-console</v-icon>Model</v-tab>
+        <v-tab><v-icon>mdi-cog</v-icon>Setting</v-tab>
+      </v-tabs>
+      <v-row>
+        <v-col cols="9" sm="6" md="3">
+          <!-- Layers -->
+          <h3>Layers</h3>
+          <draggable
+            class="layers"
+            :list="layers"
+            :group="{ type: 'layers', pull: 'clone', put: false }"
+            :clone="addBlock"
+            @change="log"
+          >
+            <div
+              class="block"
+              id="layers"
+              v-for="element in layers"
+              :key="element.ID"
+            >
+              {{ element.type }}
+            </div>
+          </draggable>
+          <div></div>
+        </v-col>
 
-      <!-- Activations  -->
-      <v-col cols="9" sm="6" md="3">
-        <h3>Activation Functions</h3>
-        <draggable
-          class="activations"
-          :list="activations"
-          :group="{ type: 'activations', pull: 'clone', put: false }"
-          @change="log"
-        >
-          <div
-            class="block"
-            id="activations"
-            v-for="element in activations"
-            :key="element.ID"
-          >{{element.type}}</div>
-        </draggable>
-      </v-col>
+        <!-- Activations  -->
+        <v-col cols="9" sm="6" md="3">
+          <h3>Activation Functions</h3>
+          <draggable
+            class="activations"
+            :list="activations"
+            :group="{ type: 'activations', pull: 'clone', put: false }"
+            @change="log"
+          >
+            <div
+              class="block"
+              id="activations"
+              v-for="element in activations"
+              :key="element.ID"
+            >
+              {{ element.type }}
+            </div>
+          </draggable>
+        </v-col>
 
-      <!-- Model -->
-      <v-col cols="9" sm="6" md="3">
-        <h3>Model</h3>
-        <draggable class="model" :list="model" :group="{ type: 'model', put: true }" @change="log">
-          <div
-            class="block"
-            id="model"
-            v-for="element in model"
-            :class="element.key"
-            :key="element.ID"
-          >{{element.type}}</div>
-        </draggable>
-      </v-col>
+        <!-- Model -->
+        <v-col cols="9" sm="6" md="3">
+          <h3>Model</h3>
+          <draggable
+            class="model"
+            :list="model"
+            :group="{ type: 'model', put: true }"
+            @change="log"
+          >
+            <div
+              class="block"
+              id="model"
+              v-for="element in model"
+              :class="element.key"
+              :key="element.ID"
+            >
+              {{ element.type }}
+            </div>
+          </draggable>
+        </v-col>
 
-      <v-col>
-        <div class="resultBtn" id="resultBtn">
-          <v-btn rounded @click="saveFile()">전송</v-btn>
-        </div>
-        <div class="resetBtn" id="rsetBtn">
-          <v-btn rounded @click="replace()">초기화</v-btn>
-        </div>
-      </v-col>
-    </v-row>
+        <v-col>
+          <div class="resultBtn" id="resultBtn">
+            <v-btn rounded @click="saveFile()">전송</v-btn>
+          </div>
+          <div class="resetBtn" id="rsetBtn">
+            <v-btn rounded @click="replace()">초기화</v-btn>
+          </div>
+        </v-col>
+      </v-row>
   </v-content>
 </template>
 
@@ -71,7 +88,7 @@ import draggable from "vuedraggable";
 export default {
   name: "Board",
   components: {
-    draggable
+    draggable,
   },
   data: () => ({
     layers: [
@@ -81,13 +98,13 @@ export default {
       { key: "layer", type: "test_1", ID: "l3" },
       { key: "layer", type: "test_2", ID: "l4" },
       { key: "layer", type: "test_3", ID: "l5" },
-      { key: "layer", type: "test_4", ID: "l6" }
+      { key: "layer", type: "test_4", ID: "l6" },
     ],
     activations: [
       { key: "activation", type: "relu", ID: "a0" },
-      { key: "activation", type: "sigmoid", ID: "a1" }
+      { key: "activation", type: "sigmoid", ID: "a1" },
     ],
-    model: []
+    model: [],
   }),
   methods: {
     log: function(evt) {
@@ -117,13 +134,12 @@ export default {
     },
     replace: function() {
       this.model = [];
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style>
-
 h1 {
   color: black;
 }
@@ -132,7 +148,7 @@ h3 {
 }
 .layers,
 .activations,
-.model { 
+.model {
   position: absolute;
   width: 13%;
   height: auto;
@@ -155,10 +171,8 @@ h3 {
 }
 #activations,
 #model.activation {
-
   background: yellow;
   border: 2px solid yellowgreen;
-
 }
 #layers,
 #model.layer {
