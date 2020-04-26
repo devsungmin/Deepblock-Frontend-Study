@@ -1,142 +1,168 @@
 <template>
-    <v-content>
-        <v-container>
-            <v-row>
-                <v-col align="center">
-                    <h3>Layer</h3>
-                    <draggable class="layer" :list="layer" :group="{ type: 'layer', pull: 'clone', put: false }" @change="log">
-                        <v-card class="layer-group-list" id="layer" v-for="element in layer" :key="element.ID">
-                            {{element.type}}
-                        </v-card>
-                    </draggable>
-                    <div>
-                        
-                    </div>
-                </v-col>
-                <!-- activation function  -->
-                <v-col>
-                    <h3>Activation Function</h3>
-                    <draggable class="activation" :list="activation" :group="{ type: 'activation', pull: 'clone', put: false }" @change="log">
-                        <v-card class="activation-group-item" id="activation" v-for="element in activation" :key="element.ID">
-                            {{element.type}}
-                        </v-card>
-                    </draggable>
-                </v-col>
-                <!-- model -->
-                    <v-col>
-                        <h3>Models</h3>
-                        <draggable class="Models" :list="models" :group="{ type: 'models', put: true }" @change="log">
-                            <v-card class="models-group-item layer_t acti_t" id="models" v-for="element in models" :key="element.ID">
-                                {{element.type}}
-                            </v-card>
-                        </draggable>
-                    </v-col>
-                    <v-col>
-                        <div class="resultBtn" id='resultBtn'>
-                            <v-btn rounded @click="saveFile()">전송</v-btn>
-                        </div>
-                        <div class="resetBtn" id='rsetBtn'>
-                            <v-btn rounded @click="replace()">초기화</v-btn>
-                        </div>
-                    </v-col>
-            </v-row>
-        <v-col>
-            <chart/>
-        </v-col>
-        </v-container>
-    </v-content>
+  <v-content>
+    <v-row>
+      <v-col cols="9" sm="6" md="3">
+        <!-- Layers -->
+        <h3>Layers</h3>
+        <draggable
+          class="layers"
+          :list="layers"
+          :group="{ type: 'layers', pull: 'clone', put: false }"
+          :clone="addBlock"
+          @change="log"
+        >
+          <div
+            class="block"
+            id="layers"
+            v-for="element in layers"
+            :key="element.ID"
+          >{{element.type}}</div>
+        </draggable>
+        <div></div>
+      </v-col>
+
+      <!-- Activations  -->
+      <v-col cols="9" sm="6" md="3">
+        <h3>Activation Functions</h3>
+        <draggable
+          class="activations"
+          :list="activations"
+          :group="{ type: 'activations', pull: 'clone', put: false }"
+          @change="log"
+        >
+          <div
+            class="block"
+            id="activations"
+            v-for="element in activations"
+            :key="element.ID"
+          >{{element.type}}</div>
+        </draggable>
+      </v-col>
+
+      <!-- Model -->
+      <v-col cols="9" sm="6" md="3">
+        <h3>Model</h3>
+        <draggable class="model" :list="model" :group="{ type: 'model', put: true }" @change="log">
+          <div
+            class="block"
+            id="model"
+            v-for="element in model"
+            :class="element.key"
+            :key="element.ID"
+          >{{element.type}}</div>
+        </draggable>
+      </v-col>
+
+      <v-col>
+        <div class="resultBtn" id="resultBtn">
+          <v-btn rounded @click="saveFile()">전송</v-btn>
+        </div>
+        <div class="resetBtn" id="rsetBtn">
+          <v-btn rounded @click="replace()">초기화</v-btn>
+        </div>
+      </v-col>
+    </v-row>
+  </v-content>
 </template>
 
 <script>
-    import draggable from 'vuedraggable'
-    // import modelsdata from '../assets/data/modelsdata.json'
-    import chart from './chart.vue'
-    export default {
-        name: "Board",
-        components: {
-            draggable,
-            chart
-        },
-        data : () => ({
-            layer: [
-                { type: "conv2d", ID: "l0"},
-                { type: "maxPooling2d", ID: "l1"},
-                { type: "avgPooling2d", ID: "l2"},
-                { type: "test_1", ID: "l3"},
-                { type: "test_2", ID: "l4"},
-                { type: "test_3", ID: "l5"},
-                { type: "test_4", ID: "l6"}
-            ],
-            activation:[
-                { type: "relu", ID:"a0" },
-                { type: "sigmoid", ID:"a1"}
-            ],
-            models:[
-            ]
-
-        }),
-        methods: {
-            log: function(evt) {
-                window.console.log(evt);
-            },
-            saveFile: function() {
-                const data = JSON.stringify(this.models);
-                const e = document.createEvent('MouseEvents');
-                e.initEvent('click', true, false, window, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
-                console.log(data);
-            },
-            replace: function() {
-                this.models = [];
-            }
-        }
+import draggable from "vuedraggable";
+// import modelsdata from '../assets/data/modelsdata.json'
+export default {
+  name: "Board",
+  components: {
+    draggable
+  },
+  data: () => ({
+    layers: [
+      { key: "layer", type: "conv2d", ID: "l0" },
+      { key: "layer", type: "maxPooling2d", ID: "l1" },
+      { key: "layer", type: "avgPooling2d", ID: "l2" },
+      { key: "layer", type: "test_1", ID: "l3" },
+      { key: "layer", type: "test_2", ID: "l4" },
+      { key: "layer", type: "test_3", ID: "l5" },
+      { key: "layer", type: "test_4", ID: "l6" }
+    ],
+    activations: [
+      { key: "activation", type: "relu", ID: "a0" },
+      { key: "activation", type: "sigmoid", ID: "a1" }
+    ],
+    model: []
+  }),
+  methods: {
+    log: function(evt) {
+      window.console.log(evt);
+    },
+    saveFile: function() {
+      const data = JSON.stringify(this.model);
+      const e = document.createEvent("MouseEvents");
+      e.initEvent(
+        "click",
+        true,
+        false,
+        window,
+        0,
+        0,
+        0,
+        0,
+        0,
+        false,
+        false,
+        false,
+        false,
+        0,
+        null
+      );
+      console.log(data);
+    },
+    replace: function() {
+      this.model = [];
     }
+  }
+};
 </script>
 
 <style>
-@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap");
 
-* {
-    font-family: "Nanum Gothic";
+h1 {
+  color: black;
 }
-h1{ color: black; }
-h3{ padding-left: 30%;}
-.layer, .activation, .Models {
-    position: absolute;
-    width: 13%;
-    height: auto;
-    border: 2px solid cornflowerblue;
-    background: wheat;
-    border-radius: 10px;
-    margin: 20px;
-    text-align: center;
+h3 {
+  padding-left: 30%;
 }
-.resultBtn, .resetBtn{
-    margin: 20px;
+.layers,
+.activations,
+.model { 
+  position: absolute;
+  width: 13%;
+  height: auto;
+  border: 2px solid cornflowerblue;
+  background: wheat;
+  border-radius: 10px;
+  margin: 20px;
+  text-align: center;
 }
-#layer, .layer_t{
-    width: 60%;
-    height: auto;
-    background:cyan !important;
-    border: 2px solid blue;
-    text-align: center;
-    border-radius: 10px;
-    margin-left: 50px;
-  }
-  #activation, .acti_t{
-    width: 60%;
-    height: auto;
-    background: yellow !important;
-      border: 2px solid yellowgreen;
-      text-align: center;
-      border-radius: 10px;
-      margin-left: 50px;
-  }
-  #models {
-    width: 60%;
-    height: auto;
-    border: 2px solid black;
-    text-align: center;
-    border-radius: 10px;
-    margin-left: 50px;
-  }
+.resultBtn,
+.resetBtn {
+  margin: 20px;
+}
+.block {
+  width: 60%;
+  height: auto;
+  text-align: center;
+  border-radius: 10px;
+  margin-left: 50px;
+}
+#activations,
+#model.activation {
+
+  background: yellow;
+  border: 2px solid yellowgreen;
+
+}
+#layers,
+#model.layer {
+  background: cyan;
+  border: 2px solid black;
+}
 </style>

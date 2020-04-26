@@ -14,3 +14,11 @@ export default {
   },
 };
 </script>
+
+<style>
+@import url("https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@700&display=swap");
+
+body .v-application {
+  font-family: "Nanum Gothic";
+}
+</style>
