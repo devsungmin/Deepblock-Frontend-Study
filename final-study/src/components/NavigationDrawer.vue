@@ -47,8 +47,14 @@
       <v-btn icon href="/">
         <v-icon>mdi-home</v-icon>
       </v-btn>
+      <v-btn icon href="/dataset">
+        <v-icon>mdi-database</v-icon>
+      </v-btn>
       <v-btn icon href="/board">
         <v-icon>mdi-console</v-icon>
+      </v-btn>
+      <v-btn icon href="/settings">
+        <v-icon>mdi-cog</v-icon>
       </v-btn>
     </v-app-bar>
   </v-content>

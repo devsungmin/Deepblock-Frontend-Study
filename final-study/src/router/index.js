@@ -6,22 +6,20 @@ import Main from '@/components/Main'
 import Board from '@/components/Board'
 
 //views
-import HomeBoard from '@/views/HomeBoard'
-import BlockBoard from '@/views/BlockBoard'
-import DatasetBoard from '@/views/DatasetBoard'
-import SettingBoard from '@/views/SettingBoard'
+import Block from '@/views/Block'
+import Dataset from '@/views/Dataset'
+import Settings from '@/views/Settings'
 
 Vue.use(VueRouter)
 const routes = [
     { path: '/', component: Main },
     { path: '/board', name: 'Board', component: Board, 
         children: [
-            { path: '', component: HomeBoard },
-            { path: 'datasetboard', component: DatasetBoard },
-            { path: 'blockboard', component: BlockBoard },
-            { path: 'settingboard', component: SettingBoard } 
+            { path: '', component: Block },
         ]
-    }
+    },
+    { path: '/dataset', component: Dataset },
+    { path: '/settings', component: Settings }
 ]
 
 const router = new VueRouter({
