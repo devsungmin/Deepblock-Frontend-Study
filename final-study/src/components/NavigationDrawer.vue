@@ -2,8 +2,6 @@
   <v-content>
     <v-navigation-drawer
       v-model="drawer"
-      :expand-on-hover="expandOnHover"
-      :mini-variant="miniVariant"
       :right="right"
       color="teal"
       app
@@ -20,7 +18,6 @@
             <v-list-item-subtitle>{{ user.job }}</v-list-item-subtitle>
           </v-list-item-content>
         </v-list-item>
-
         <v-divider />
 
         <v-list-item v-for="item in items" :key="item.title" :href="item.lnk">
@@ -71,9 +68,8 @@ export default {
         { icon: "mdi-home", title: "Home", lnk: "/" },
         { icon: "mdi-console", title: "Board", lnk: "/board" },
       ],
-      expandOnHover: true,
-      miniVariant: true,
       right: false,
+      miniVariant: true
     };
   },
 };
