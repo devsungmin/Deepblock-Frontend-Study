@@ -6,10 +6,10 @@
       label="Search"
       prepend-inner-icon="mdi-magnify"
     />
-    <v-list class="sidebar-list layer" nav rounded>
+    <v-list class="sidebar-list layer" nav rounded elevation>
       <v-list-group>
         <template v-slot:activator>
-          <v-list-item-title>Convolutional</v-list-item-title>
+          <v-list-item-title><v-icon>mdi-folder</v-icon>Convolutional</v-list-item-title>
         </template>
         <draggable :list="convol" :group="{ type: 'convol', pull: 'clone'}">
           <v-list-item
@@ -30,7 +30,7 @@
 
        <v-list-group>
         <template v-slot:activator>
-          <v-list-item-title>Normalization</v-list-item-title>
+          <v-list-item-title><v-icon>mdi-folder</v-icon>Normalization</v-list-item-title>
         </template>
         <draggable :list="nomalization" :group="{ type: 'nomalization', pull: 'clone'}">
           <v-list-item
@@ -51,7 +51,7 @@
 
        <v-list-group>
         <template v-slot:activator>
-          <v-list-item-title>Pooling</v-list-item-title>
+          <v-list-item-title><v-icon>mdi-folder</v-icon>Pooling</v-list-item-title>
         </template>
         <draggable :list="pooling" :group="{ type: 'pooling', pull: 'clone'}">
           <v-list-item
