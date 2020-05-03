@@ -1,22 +1,75 @@
 <template>
   <v-navigation-drawer v-model="pallet" clipped app>
-    <v-combobox label="Selete Input Type" :items="items" />
-      <v-list rounded nav class="sidebar-list layer">
-        <draggable class="pallet">
-        <v-list-item
-          class="layers"
-          v-for="layer in layers"
-          :key="layer.type"
-          @click="moveItem"
-        >
-          <v-list-item-content>
-            <v-list-item-title class="block">
-              {{ layer.type }}
-            </v-list-item-title>
-          </v-list-item-content>
-        </v-list-item>
+    <v-text-field
+      class="searchBar"
+      hide-details
+      label="Search"
+      prepend-inner-icon="mdi-magnify"
+    />
+    <v-list class="sidebar-list layer" nav rounded>
+      <v-list-group>
+        <template v-slot:activator>
+          <v-list-item-title>Convolutional</v-list-item-title>
+        </template>
+        <draggable :list="convol" :group="{ type: 'convol', pull: 'clone'}">
+          <v-list-item
+            class="convol"
+            v-for="con in convol"
+            :key="con.type"
+            :group="{ type: 'type', put: false }"
+            @click="moveItem"
+          >
+            <v-list-item-content>
+              <v-list-item-title class="block">
+                {{ con.type }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
         </draggable>
-      </v-list>
+      </v-list-group>
+
+       <v-list-group>
+        <template v-slot:activator>
+          <v-list-item-title>Normalization</v-list-item-title>
+        </template>
+        <draggable :list="nomalization" :group="{ type: 'nomalization', pull: 'clone'}">
+          <v-list-item
+            class="nomalization"
+            v-for="nom in nomalization"
+            :key="nom.type"
+            :group="{ type: 'type', put: false }"
+            @click="moveItem"
+          >
+            <v-list-item-content>
+              <v-list-item-title class="block">
+                {{ nom.type }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </draggable>
+      </v-list-group>
+
+       <v-list-group>
+        <template v-slot:activator>
+          <v-list-item-title>Pooling</v-list-item-title>
+        </template>
+        <draggable :list="pooling" :group="{ type: 'pooling', pull: 'clone'}">
+          <v-list-item
+            class="pooling"
+            v-for="pool in pooling"
+            :key="pool.type"
+            :group="{ type: 'type', put: false }"
+            @click="moveItem"
+          >
+            <v-list-item-content>
+              <v-list-item-title class="block">
+                {{ pool.type }}
+              </v-list-item-title>
+            </v-list-item-content>
+          </v-list-item>
+        </draggable>
+      </v-list-group>
+    </v-list>
   </v-navigation-drawer>
 </template>
 
@@ -28,16 +81,32 @@ export default {
     draggable,
   },
   data: () => ({
-    layers: [
-      { key: "layer", type: "conv2d", ID: "l0" },
-      { key: "layer", type: "maxPool2d", ID: "l1" },
-      { key: "layer", type: "avgPool2d", ID: "l2" },
-      { key: "layer", type: "test_1", ID: "l3" },
-      { key: "layer", type: "test_2", ID: "l4" },
-      { key: "layer", type: "test_3", ID: "l5" },
-      { key: "layer", type: "test_4", ID: "l6" },
+    convol: [
+      { key: "convol", type: "conv1d", ID: "c0" },
+      { key: "convol", type: "conv2d", ID: "c1" },
+      { key: "convol", type: "conv2dTranspose", ID: "c2" },
+      { key: "convol", type: "conv3d", ID: "c3" },
+      { key: "convol", type: "cropping2D", ID: "c4" },
+      { key: "convol", type: "depthwiseConv2d", ID: "c5" },
+      { key: "convol", type: "separableConv2d", ID: "c6" },
+      { key: "convol", type: "upSampling2d", ID: "c7" }
     ],
-    items: ["Layer", "compile", "Fit"],
+    nomalization: [
+      { key: "nomalization", type: "batchNormalization", ID: "n0" },
+      { key: "nomalization", type: "layerNormalization", ID: "n1" }
+    ],
+    pooling: [
+      { key: "pooling", type: "averagePooling1d", ID: "p0"},
+      { key: "pooling", type: "averagePooling2d", ID: "p1"},
+      { key: "pooling", type: "averagePooling3d", ID: "p2"},
+      { key: "pooling", type: "globalAveragePooling1d", ID: "p3"},
+      { key: "pooling", type: "globalAveragePooling2d", ID: "p4"},
+      { key: "pooling", type: "globalMaxPooling1d", ID: "p5"},
+      { key: "pooling", type: "globalMaxPooling2d", ID: "p6"},
+      { key: "pooling", type: "maxPooling1d", ID: "p7"},
+      { key: "pooling", type: "maxPooling2d", ID: "p8"},
+      { key: "pooling", type: "maxPooling3d", ID: "p9"},
+    ]
   }),
   methods: {
     moveItem: function() {
@@ -56,11 +125,9 @@ h1
   width: 50%
   font-size: 100%
   height: auto
-  text-align: center
 
-.layers
+.convol,
+.pooling,
+.nomalization
   width: auto
-  background: cyan
-  border: 2px solid black
-  text-align: center
 </style>

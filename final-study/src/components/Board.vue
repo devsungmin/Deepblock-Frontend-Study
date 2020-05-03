@@ -1,7 +1,7 @@
 <template>
   <v-content>
     <v-tabs fixed-tabs background-color="indigo" dark>
-      <v-tab to="/board"><v-icon>mdi-console</v-icon>Board</v-tab>
+      <v-tab to=""><v-icon>mdi-console</v-icon>Board</v-tab>
     </v-tabs>
     <pallet/>
     <router-view/>

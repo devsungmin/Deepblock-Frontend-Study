@@ -15,7 +15,7 @@ const routes = [
     { path: '/', component: Main },
     { path: '/board', name: 'Board', component: Board, 
         children: [
-            { path: '', component: Block },
+            { path: '/board', component: Block },
         ]
     },
     { path: '/dataset', component: Dataset },
