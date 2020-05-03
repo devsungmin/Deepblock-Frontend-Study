@@ -1,81 +1,39 @@
 <template>
-  <v-container>
-    <v-layout row wrap>
-      <v-row  justify="start" align="stretch" style="height: 300px">
-        <v-col cols="12">
-          <h1>Block</h1>
-        </v-col>
-        <v-col cols="2">
-          <!-- Layers -->
-          <h3>Layers</h3>
-          <draggable
-            class="layers"
-            :list="layers"
-            :group="{ type: 'layers', pull: 'clone', put: false }"
-            @change="log"
-          >
-            <div
-              class="block"
-              id="layers"
-              v-for="element in layers"
-              :key="element.ID"
-            >
-              {{ element.type }}
-            </div>
-          </draggable>
-        </v-col>
+  <v-container fluid>
+    <v-row>
+      <v-col cols="12"> </v-col>
 
-        <!-- Activations  -->
-        <v-col cols="2">
-          <h3>Activation Functions</h3>
-          <draggable
-            class="activations"
-            :list="activations"
-            :group="{ type: 'activations', pull: 'clone', put: false }"
-            @change="log"
+      <!-- Model -->
+      <v-col cols="12">
+        <h2 style="margin-left: 42%">Model</h2>
+        <draggable
+          class="model"
+          :list="model"
+          :group="{ type: 'model', put: true }"
+          @change="log"
+        >
+          <v-card
+            v-model="model"
+            class="modelblock"
+            id="model"
+            v-for="element in model"
+            :class="element.key"
+            :key="element.ID"
           >
-            <div
-              class="block"
-              id="activations"
-              v-for="element in activations"
-              :key="element.ID"
-            >
-              {{ element.type }}
-            </div>
-          </draggable>
-        </v-col>
+            {{ element.type }}
+          </v-card>
+        </draggable>
+      </v-col>
 
-        <!-- Model -->
-        <v-col cols="2">
-          <h3>Model</h3>
-          <draggable
-            class="model"
-            :list="model"
-            :group="{ type: 'model', put: true }"
-            @change="log"
-          >
-            <div
-              class="block"
-              id="model"
-              v-for="element in model"
-              :class="element.key"
-              :key="element.ID"
-            >
-              {{ element.type }}
-            </div>
-          </draggable>
-        </v-col>
-
-        <v-col cols="12" align="center">
-          <div class="resultBtn" id="resultBtn">
-            <v-btn rounded @click="saveFile()">전송</v-btn>
-          </div>
-          <div class="resetBtn" id="rsetBtn">
-            <v-btn rounded @click="replace()">초기화</v-btn>
-          </div>
-        </v-col>
-      </v-row>
-    </v-layout>
+      <v-col cols="12" align="end">
+        <div class="resultBtn" id="resultBtn">
+          <v-btn rounded @click="saveFile()">전송</v-btn>
+        </div>
+        <div class="resetBtn" id="rsetBtn">
+          <v-btn rounded @click="replace()">초기화</v-btn>
+        </div>
+      </v-col>
+    </v-row>
   </v-container>
 </template>
 
@@ -87,19 +45,6 @@ export default {
     draggable,
   },
   data: () => ({
-    layers: [
-      { key: "layer", type: "conv2d", ID: "l0" },
-      { key: "layer", type: "maxPooling2d", ID: "l1" },
-      { key: "layer", type: "avgPooling2d", ID: "l2" },
-      { key: "layer", type: "test_1", ID: "l3" },
-      { key: "layer", type: "test_2", ID: "l4" },
-      { key: "layer", type: "test_3", ID: "l5" },
-      { key: "layer", type: "test_4", ID: "l6" },
-    ],
-    activations: [
-      { key: "activation", type: "relu", ID: "a0" },
-      { key: "activation", type: "sigmoid", ID: "a1" },
-    ],
     model: [],
   }),
   methods: {
@@ -135,43 +80,48 @@ export default {
 };
 </script>
 
-<style>
-h1 {
-  color: black;
-  text-align: center;
-}
+<style lang="sass">
+h1
+  color: black
+  text-align: center
 
-.layers,
-.activations,
-.model {
-  position: absolute;
-  width: 13%;
-  height: auto;
-  border: 2px solid cornflowerblue;
-  background: wheat;
-  border-radius: 10px;
-  margin: 20px;
-  text-align: center;
-}
+.model
+  position: absolute
+  width: 88%
+  height: 100%
+  border: 2px solid #78909C
+  background: white
+  border-radius: 10px
+  margin-top: 20px
+  text-align: center
+  overflow: inherit
+
 .resultBtn,
-.resetBtn {
-  margin: 20px;
-}
-.block {
-  width: 60%;
-  height: auto;
-  text-align: center;
-  border-radius: 10px;
-  margin-left: 50px;
-}
-#activations,
-#model.activation {
-  background: yellow;
-  border: 2px solid yellowgreen;
-}
-#layers,
-#model.layer {
-  background: cyan;
-  border: 2px solid black;
-}
+.resetBtn
+  margin: 20px
+
+.block
+  width: 50%
+  font-size: 100%
+  margin-top: 2%
+  margin-bottom: 2%
+
+.modelblock
+  width: 50%
+  font-size: 100%
+  margin-top: 2%
+  margin-bottom: 2%
+  margin-left:25%
+
+#model.pooling
+  background: #B2DFDB
+  border: 2px solid #26A69A
+
+#model.convol
+  background: #E1BEE7
+  border: 2px solid #AB47BC
+
+#model.nomalization
+  background: #DCE775
+  border: 2px solid #827717
 </style>

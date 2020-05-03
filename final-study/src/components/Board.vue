@@ -1,14 +1,19 @@
 <template>
   <v-content>
     <v-tabs fixed-tabs background-color="indigo" dark>
-      <v-tab to="/board"><v-icon>mdi-console</v-icon>Board</v-tab>
+      <v-tab to=""><v-icon>mdi-console</v-icon>Board</v-tab>
     </v-tabs>
-    <router-view />
+    <pallet/>
+    <router-view/>
   </v-content>
 </template>
 
 <script>
+import pallet from '@/views/Pallet.vue'
 export default {
   name: "Board",
+  components: {
+    pallet
+  },
 };
 </script>
