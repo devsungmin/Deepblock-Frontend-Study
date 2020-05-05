@@ -1,15 +1,17 @@
 <template>
   <v-navigation-drawer v-model="pallet" clipped app>
+
     <v-text-field
-      class="searchBar"
+      v-model="search"
       hide-details
-      label="Search"
+      placeholder="search"
       prepend-inner-icon="mdi-magnify"
     />
-    <v-list class="sidebar-list layer" nav rounded elevation>
+
+    <v-list class="sidebar-list layer" nav rounded elevation expand>
       <v-list-group>
         <template v-slot:activator>
-          <v-list-item-title><v-icon>mdi-folder</v-icon>Convolutional</v-list-item-title>
+          <v-list-item-title><v-icon style="margin-right: 8%">mdi-layers</v-icon>Convolutional</v-list-item-title>
         </template>
         <draggable :list="convol" :group="{ type: 'convol', pull: 'clone'}">
           <v-list-item
@@ -17,7 +19,6 @@
             v-for="con in convol"
             :key="con.type"
             :group="{ type: 'type', put: false }"
-            @click="moveItem"
           >
             <v-list-item-content>
               <v-list-item-title class="block">
@@ -30,7 +31,7 @@
 
        <v-list-group>
         <template v-slot:activator>
-          <v-list-item-title><v-icon>mdi-folder</v-icon>Normalization</v-list-item-title>
+          <v-list-item-title><v-icon style="margin-right: 8%">mdi-layers</v-icon>Normalization</v-list-item-title>
         </template>
         <draggable :list="nomalization" :group="{ type: 'nomalization', pull: 'clone'}">
           <v-list-item
@@ -38,7 +39,6 @@
             v-for="nom in nomalization"
             :key="nom.type"
             :group="{ type: 'type', put: false }"
-            @click="moveItem"
           >
             <v-list-item-content>
               <v-list-item-title class="block">
@@ -51,7 +51,7 @@
 
        <v-list-group>
         <template v-slot:activator>
-          <v-list-item-title><v-icon>mdi-folder</v-icon>Pooling</v-list-item-title>
+          <v-list-item-title><v-icon style="margin-right: 8%">mdi-layers</v-icon>Pooling</v-list-item-title>
         </template>
         <draggable :list="pooling" :group="{ type: 'pooling', pull: 'clone'}">
           <v-list-item
@@ -59,7 +59,6 @@
             v-for="pool in pooling"
             :key="pool.type"
             :group="{ type: 'type', put: false }"
-            @click="moveItem"
           >
             <v-list-item-content>
               <v-list-item-title class="block">
@@ -106,13 +105,8 @@ export default {
       { key: "pooling", type: "maxPooling1d", ID: "p7"},
       { key: "pooling", type: "maxPooling2d", ID: "p8"},
       { key: "pooling", type: "maxPooling3d", ID: "p9"},
-    ]
-  }),
-  methods: {
-    moveItem: function() {
-      console.log("클릭 함!");
-    },
-  },
+    ], 
+  })
 };
 </script>
 
@@ -121,13 +115,32 @@ h1
   color: black
   text-align: center
 
+#searchbtn
+  margin-top: 5%
+  align: end
+
+.v-list-item__content
+  padding: 2%
+  margin-bottom: 2%
+  font-size: 16px
+
+.v-list-item,
+.v-list--nav .v-list-item:not(:last-child):not(:only-child),
+.v-list--rounded .v-list-item:not(:last-child):not(:only-child)
+  margin-bottom: 2%
+
+.v-list-group
+  margin-bottom: 20px
+
 .block
   width: 50%
   font-size: 100%
   height: auto
+  margin-left:5%
 
 .convol,
 .pooling,
 .nomalization
   width: auto
+  font-size: 10px
 </style>

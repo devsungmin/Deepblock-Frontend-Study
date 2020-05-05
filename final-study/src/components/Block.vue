@@ -94,7 +94,7 @@ h1
   border-radius: 10px
   margin-top: 20px
   text-align: center
-  overflow: inherit
+  overflow: auto
 
 .resultBtn,
 .resetBtn

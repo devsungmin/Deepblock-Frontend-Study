@@ -6,7 +6,7 @@
 </template>
 
 <script>
-import Main from '@/components/Main'
+import Main from '@/views/Main'
 export default {
   name: 'App',
 

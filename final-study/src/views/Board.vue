@@ -9,7 +9,7 @@
 </template>
 
 <script>
-import pallet from '@/views/Pallet.vue'
+import pallet from '@/components/Pallet.vue'
 export default {
   name: "Board",
   components: {
