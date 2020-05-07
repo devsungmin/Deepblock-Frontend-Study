@@ -124,12 +124,15 @@ export default {
       { key: "pooling", type: "maxPooling2d", ID: "p8" },
       { key: "pooling", type: "maxPooling3d", ID: "p9" },
     ],
-    layerscopy: []
+    layerCopy: []
   }),
+  mounted() {
+    this.layerCopy = [...this.layers]
+  },
   methods: {
     search: function() {
       if (!this.searchlayer) {
-        this.layers = this.layerscopy;
+        this.layers = this.layerCopy
       }
       this.layers = this.layers.filter((layer) => {
         return layer.type.toLowerCase().indexOf(this.searchlayer.toLowerCase())> -1
