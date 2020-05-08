@@ -3,7 +3,8 @@
     <v-tabs fixed-tabs background-color="indigo" dark>
       <v-tab to=""><v-icon>mdi-console</v-icon>Board</v-tab>
     </v-tabs>
-    <pallete/>
+    <pallete>
+    </pallete>
     <router-view/>
   </v-content>
 </template>
