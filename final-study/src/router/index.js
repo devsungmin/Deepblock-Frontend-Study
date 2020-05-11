@@ -2,13 +2,13 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 
 // components
-import Main from '@/components/Main'
-import Board from '@/components/Board'
+import Main from '@/views/Main'
+import Board from '@/views/Board'
 
 //views
-import Block from '@/views/Block'
-import Dataset from '@/views/Dataset'
-import Settings from '@/views/Settings'
+import Block from '@/components/Block'
+import Dataset from '@/components/Dataset'
+import Settings from '@/components/Settings'
 
 Vue.use(VueRouter)
 const routes = [

@@ -94,7 +94,7 @@ h1
   border-radius: 10px
   margin-top: 20px
   text-align: center
-  overflow: inherit
+  overflow: auto
 
 .resultBtn,
 .resetBtn
@@ -113,15 +113,69 @@ h1
   margin-bottom: 2%
   margin-left:25%
 
-#model.pooling
-  background: #B2DFDB
-  border: 2px solid #26A69A
+#model.activation
+  background: #FFB2D9
+  border: 2px solid #D9418C
+  font-weight: bold
+
+#model.basic
+  background: #BDBDBD
+  border: 2px solid #5D5D5D
+  font-weight: bold
 
 #model.convol
   background: #E1BEE7
   border: 2px solid #AB47BC
+  font-weight: bold
+
+#model.merge
+  background: #F29661
+  border: 2px solid #993800
+  font-weight: bold
 
 #model.nomalization
   background: #DCE775
   border: 2px solid #827717
+  font-weight: bold
+
+#model.pooling
+  background: #B2DFDB
+  border: 2px solid #26A69A
+  font-weight: bold
+
+#model.recurrent
+  background: #B7F0B1
+  border: 2px solid #47C83E
+  font-weight: bold
+
+#model.wrapper
+  background: #B5B2FF
+  border: 2px solid #4641D9
+  font-weight: bold
+
+#model.classes
+  background: #D9E5FF
+  border: 2px solid #4374D9
+  font-weight: bold
+
+#model.inputs
+  background: #FFA7A7
+  border: 2px solid #980000
+  font-weight: bold
+  
+#model.padding
+  background: #5CD1E5
+  border: 2px solid #008299
+  font-weight: bold
+
+
+#model.noise
+  background: #DCE775
+  border: 2px solid #827717
+  font-weight: bold
+
+#model.mask
+  background: #DCE775
+  border: 2px solid #827717
+  font-weight: bold
 </style>
